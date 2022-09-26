@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qbox/page/testing.dart';
+import 'package:qbox/blocs/login_bloc.dart';
+import 'package:qbox/resource/testing.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -10,14 +11,11 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
+  LoginBloc bloc = new LoginBloc();
+
   bool _showPass = false;
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
-
-  final String _userNameErr = 'Username ko hợp lệ !';
-  final String _passwordErr = 'Password ko hợp lệ !';
-  bool _userInvalid = false;
-  bool _passInvalid = false;
 
   @override
   Widget build(BuildContext context) {
@@ -55,31 +53,39 @@ class _Login extends State<Login> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-              child: TextField(
-                controller: _userController,
-                style: TextStyle(fontSize: 18, color: Colors.black),
-                decoration: InputDecoration(
-                    labelText: "USERNAME",
-                    errorText: _userInvalid ? _userNameErr : null,
-                    labelStyle:
-                        TextStyle(color: Color(0xff888888), fontSize: 15)),
-              ),
-            ),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                child: StreamBuilder(
+                    stream: bloc.userStream,
+                    builder: (context, snapshot) => TextField(
+                          controller: _userController,
+                          style: TextStyle(fontSize: 18, color: Colors.black),
+                          decoration: InputDecoration(
+                              labelText: "USERNAME",
+                              errorText: snapshot.hasError
+                                  ? snapshot.error.toString()
+                                  : null,
+                              labelStyle: TextStyle(
+                                  color: Color(0xff888888), fontSize: 15)),
+                        ))),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
               child: Stack(
                 alignment: AlignmentDirectional.centerEnd,
                 children: [
-                  TextField(
-                    controller: _passController,
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                    obscureText: !_showPass,
-                    decoration: InputDecoration(
-                        labelText: "PASSWORD",
-                        errorText: _passInvalid ? _passwordErr : null,
-                        labelStyle:
-                            TextStyle(color: Color(0xff888888), fontSize: 15)),
+                  StreamBuilder(
+                    stream: bloc.passStream,
+                    builder: (context, snapshot) => TextField(
+                      controller: _passController,
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      obscureText: !_showPass,
+                      decoration: InputDecoration(
+                          labelText: "PASSWORD",
+                          errorText: snapshot.hasError
+                              ? snapshot.error.toString()
+                              : null,
+                          labelStyle: TextStyle(
+                              color: Color(0xff888888), fontSize: 15)),
+                    ),
                   ),
                   GestureDetector(
                     onTap: onToggleShowPass,
@@ -130,25 +136,9 @@ class _Login extends State<Login> {
   }
 
   void onSignInClicked() {
-    setState(() {
-      // validate input
-      if (_userController.text.isEmpty) {
-        _userInvalid = true;
-      } else {
-        _userInvalid = false;
-      }
-
-      if (_passController.text.isEmpty) {
-        _passInvalid = true;
-      } else {
-        _passInvalid = false;
-      }
-
-      //code flow login ở đây
-      if (!_userInvalid && !_passInvalid) {
-        Navigator.push(context, MaterialPageRoute(builder: gotoTesting));
-      }
-    });
+    if (bloc.isValidInfor(_userController.text, _passController.text)) {
+      Navigator.push(context, MaterialPageRoute(builder: gotoTesting));
+    }
   }
 
   Widget gotoTesting(BuildContext context) {

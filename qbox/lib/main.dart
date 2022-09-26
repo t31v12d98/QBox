@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qbox/page/login.dart';
+import 'package:qbox/resource/login.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,6 +8,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(home: Login());
+    return MaterialApp(home: Login());
   }
 }
