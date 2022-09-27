@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qbox/blocs/login_bloc.dart';
+import 'package:qbox/resource/home.dart';
 import 'package:qbox/resource/testing.dart';
 
 class Login extends StatefulWidget {
@@ -137,11 +138,11 @@ class _Login extends State<Login> {
 
   void onSignInClicked() {
     if (bloc.isValidInfor(_userController.text, _passController.text)) {
-      Navigator.push(context, MaterialPageRoute(builder: gotoTesting));
+      Navigator.push(context, MaterialPageRoute(builder: gotoHome));
     }
   }
 
-  Widget gotoTesting(BuildContext context) {
-    return MyApp(); // trang testing
+  Widget gotoHome(BuildContext context) {
+    return Home(); 
   }
 }

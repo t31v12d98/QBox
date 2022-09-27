@@ -1,7 +1,10 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
-class HomeAppBar extends StatelessWidget {
+class MyAppBar extends StatelessWidget {
+  String title;
+  IconData icon;
+  MyAppBar({required this.title, required this.icon});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -9,8 +12,8 @@ class HomeAppBar extends StatelessWidget {
       padding: EdgeInsets.all(25),
       child: Row(children: [
         Icon(
-          Icons.sort,
-          size: 30,
+          icon,
+          size: 22,
           color: Color(0xFF4C53A5),
         ),
         Padding(
@@ -18,7 +21,7 @@ class HomeAppBar extends StatelessWidget {
             left: 20,
           ),
           child: Text(
-            'dsads',
+            title,
             style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.bold,
@@ -31,7 +34,9 @@ class HomeAppBar extends StatelessWidget {
           padding: EdgeInsets.all(7),
           badgeContent: Text("0"),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              print("sẽ qua trang thông báo !!!");
+            },
             child: Icon(
               Icons.notifications,
               size: 35,
