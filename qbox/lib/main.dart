@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qbox/resource/home.dart';
 import 'package:qbox/resource/login.dart';
 
 void main() {
@@ -8,6 +9,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Login());
+    return MaterialApp(home: Home());
   }
 }
