@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qbox/resource/widgets/HomeAppBar.dart';
+import 'package:qbox/resource/widgets/myAppBar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,7 +15,7 @@ class _Home extends State<Home> {
     // TODO: implement build
     return Scaffold(
       body: ListView(children: [
-        HomeAppBar(),
+        MyAppBar(title: "home page", icon: Icons.hotel_class_outlined),
         Container(
           height: 500,
           padding: EdgeInsets.only(top: 15),
