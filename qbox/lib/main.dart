@@ -11,6 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: TestingAPI());
+    return MaterialApp(home: Home());
   }
 }
