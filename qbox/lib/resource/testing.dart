@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatefulWidget {
+class testingApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _MyApp();
+    return _testingApp();
   }
 }
 
-class _MyApp extends State<MyApp> {
+class _testingApp extends State<testingApp> {
   double _fistNumber = 0;
   final fistNumberEdittingController = TextEditingController();
   double _secondNumber = 0;
@@ -60,8 +60,6 @@ class _MyApp extends State<MyApp> {
                       });
                     },
                     child: Text('Phím cộng')),
-
-                    
               ],
             ),
           ),

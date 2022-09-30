@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qbox/blocs/login_bloc.dart';
 import 'package:qbox/resource/home.dart';
 import 'package:qbox/resource/testing.dart';
+import 'package:qbox/resource/widgets/myBottomNavigationBar.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -138,11 +139,12 @@ class _Login extends State<Login> {
 
   void onSignInClicked() {
     if (bloc.isValidInfor(_userController.text, _passController.text)) {
-      Navigator.push(context, MaterialPageRoute(builder: gotoHome));
+      Navigator.push(
+          context, MaterialPageRoute(builder: gotoMyBottomNavigationBar));
     }
   }
 
-  Widget gotoHome(BuildContext context) {
-    return Home(); 
+  Widget gotoMyBottomNavigationBar(BuildContext context) {
+    return myBottomNavigationBar();
   }
 }
