@@ -83,26 +83,26 @@ class _Home extends State<Home> {
             )),
       ]),
       // Bootom bar
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-              backgroundColor: Color(0xFF4C53A5)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt),
-              label: 'Appointment',
-              backgroundColor: Color(0xFF4C53A5)),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.rowing_outlined),
-              label: 'Mentor',
-              backgroundColor: Color(0xFF4C53A5)),
-        ],
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() {
-          _currentIndex = index;
-        }),
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   items: [
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.home),
+      //         label: 'Home',
+      //         backgroundColor: Color(0xFF4C53A5)),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.list_alt),
+      //         label: 'Appointment',
+      //         backgroundColor: Color(0xFF4C53A5)),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.rowing_outlined),
+      //         label: 'Mentor',
+      //         backgroundColor: Color(0xFF4C53A5)),
+      //   ],
+      //   currentIndex: _currentIndex,
+      // onTap: (index) => setState(() {
+      //   _currentIndex = index;
+      // }),
+      // ),
     );
   }
 }
