@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qbox/resource/widgets/AppointmentWidget.dart';
 import 'package:qbox/resource/widgets/myAppBar.dart';
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
   }
 }
 
-class _Home extends State<Home> {
+class _Home extends State<HomePage> {
   int _currentIndex = 0;
 
   @override

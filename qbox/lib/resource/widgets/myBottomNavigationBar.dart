@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:qbox/main.dart';
-import 'package:qbox/resource/home.dart';
-import 'package:qbox/resource/testing.dart';
-import 'package:qbox/resource/testingAPI.dart';
+import 'package:qbox/resource/homePage.dart';
+import 'package:qbox/resource/mentorPage.dart';
+import 'package:qbox/resource/testingPage.dart';
+import 'package:qbox/resource/testingAPIPage.dart';
 
 class myBottomNavigationBar extends StatefulWidget {
   const myBottomNavigationBar({super.key});
@@ -15,7 +16,7 @@ class myBottomNavigationBar extends StatefulWidget {
 
 class _myBottomNavigationBarState extends State<myBottomNavigationBar> {
   int _currentIndex = 0;
-  final List<Widget> _children = [Home(), TestingAPI(), testingApp()];
+  final List<Widget> _children = [HomePage(), TestingAPI(), mentorPage()];
 
   @override
   Widget build(BuildContext context) {

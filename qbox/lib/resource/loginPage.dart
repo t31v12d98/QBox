@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:qbox/blocs/login_bloc.dart';
-import 'package:qbox/resource/home.dart';
-import 'package:qbox/resource/testing.dart';
+import 'package:qbox/resource/homePage.dart';
+import 'package:qbox/resource/testingPage.dart';
 import 'package:qbox/resource/widgets/myBottomNavigationBar.dart';
 
-class Login extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -12,7 +12,7 @@ class Login extends StatefulWidget {
   }
 }
 
-class _Login extends State<Login> {
+class _Login extends State<LoginPage> {
   LoginBloc bloc = new LoginBloc();
 
   bool _showPass = false;
