@@ -6,6 +6,7 @@ import 'package:qbox/resource/homePage.dart';
 import 'package:qbox/resource/mentorPage.dart';
 import 'package:qbox/resource/testingPage.dart';
 import 'package:qbox/resource/testingAPIPage.dart';
+import 'package:qbox/resource/viewProfile.dart';
 
 class myBottomNavigationBar extends StatefulWidget {
   const myBottomNavigationBar({super.key});
@@ -16,7 +17,7 @@ class myBottomNavigationBar extends StatefulWidget {
 
 class _myBottomNavigationBarState extends State<myBottomNavigationBar> {
   int _currentIndex = 0;
-  final List<Widget> _children = [HomePage(), TestingAPI(), mentorPage()];
+  final List<Widget> _children = [HomePage(), TestingAPI(), ViewProfile()];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class _myBottomNavigationBarState extends State<myBottomNavigationBar> {
                 backgroundColor: Color(0xFF4C53A5)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.rowing_outlined),
-                label: 'Mentor',
+                label: 'Profile',
                 backgroundColor: Color(0xFF4C53A5)),
           ]),
     );

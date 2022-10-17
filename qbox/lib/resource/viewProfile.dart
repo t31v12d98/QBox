@@ -19,6 +19,12 @@ class ViewProfile extends StatelessWidget {
     foregroundColor: Color.fromARGB(249, 19, 18, 18),
     backgroundColor: Color.fromARGB(255, 231, 225, 225),
   );
+  final ButtonStyle flatButtonStyle3 = TextButton.styleFrom(
+    padding: EdgeInsets.all(20),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+    foregroundColor: Color.fromARGB(249, 19, 18, 18),
+    backgroundColor: Color.fromARGB(255, 255, 255, 255),
+  );
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,6 +36,18 @@ class ViewProfile extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              TextButton(
+                  style: flatButtonStyle3,
+                  onPressed: () {},
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_back_ios_new,
+                        color: Colors.black,
+                        size: 30.0,
+                      ),
+                    ],
+                  )),
               SizedBox(
                 height: 115,
                 width: 115,
@@ -73,7 +91,7 @@ class ViewProfile extends StatelessWidget {
                           color: Colors.black,
                           size: 30.0,
                         ),
-                        SizedBox(width: 20),
+                        SizedBox(width: 10),
                         Expanded(child: Text("My Account")),
                         Icon(
                           Icons.arrow_forward_ios,
