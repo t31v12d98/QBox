@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:qbox/resource/homePage.dart';
+import 'package:qbox/resource/mentorPage.dart';
 import 'package:qbox/resource/testingAPIPage.dart';
 import 'package:qbox/resource/viewProfile.dart';
 
-class myBottomNavigationBar extends StatefulWidget {
+class myBottomNavigationBarMentor extends StatefulWidget {
   int role;
-  myBottomNavigationBar({Key? mykey, required this.role}) : super(key: mykey);
+  myBottomNavigationBarMentor({Key? mykey, required this.role})
+      : super(key: mykey);
   @override
-  State<myBottomNavigationBar> createState() => _myBottomNavigationBarState();
+  State<myBottomNavigationBarMentor> createState() =>
+      _myBottomNavigationBarMentorState();
 }
 
-class _myBottomNavigationBarState extends State<myBottomNavigationBar> {
+class _myBottomNavigationBarMentorState
+    extends State<myBottomNavigationBarMentor> {
   int _currentIndex = 0;
-  final List<Widget> _children = [HomePage(), TestingAPI(), ViewProfile()];
+  final List<Widget> _children = [mentorPage(), TestingAPI(), ViewProfile()];
 
   @override
   Widget build(BuildContext context) {
     print("đây là role được truyền qua ${widget.role}");
-  
+
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

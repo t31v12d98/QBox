@@ -1,7 +1,8 @@
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:qbox/resource/loginPage.dart';
+import 'package:qbox/resource/mentorPage.dart';
+import 'package:qbox/resource/profileMentorPage.dart';
+import 'package:qbox/resource/widgets/myBottomNavigationBarMentor.dart';
 
 class ViewProfile extends StatelessWidget {
   final ButtonStyle flatButtonStyle = TextButton.styleFrom(
@@ -27,27 +28,27 @@ class ViewProfile extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
+    return SingleChildScrollView(
+      child: Column(
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              TextButton(
-                  style: flatButtonStyle3,
-                  onPressed: () {},
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios_new,
-                        color: Colors.black,
-                        size: 30.0,
-                      ),
-                    ],
-                  )),
+              // TextButton(
+              //     style: flatButtonStyle3,
+              //     onPressed: () {},
+              //     child: Row(
+              //       children: [
+              //         Icon(
+              //           Icons.arrow_back_ios_new,
+              //           color: Colors.black,
+              //           size: 30.0,
+              //         ),
+              //       ],
+              //     )),
+              SizedBox(
+                height: 70,
+              ),
               SizedBox(
                 height: 115,
                 width: 115,
@@ -83,7 +84,12 @@ class ViewProfile extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: TextButton(
                     style: flatButtonStyle2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProfileMentor()));
+                    },
                     child: Row(
                       children: [
                         Icon(
@@ -129,7 +135,14 @@ class ViewProfile extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: TextButton(
                     style: flatButtonStyle2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => myBottomNavigationBarMentor(
+                                    role: 1,
+                                  )));
+                    },
                     child: Row(
                       children: [
                         Icon(
@@ -175,7 +188,10 @@ class ViewProfile extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: TextButton(
                     style: flatButtonStyle2,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                    },
                     child: Row(
                       children: [
                         Icon(

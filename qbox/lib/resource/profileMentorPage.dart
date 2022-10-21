@@ -14,14 +14,8 @@ class _ProfileMentor extends State<ProfileMentor> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: ListView(
-        children: [
-          MyAppBar(
-            title: 'Profile Mentor',
-            icon: Icons.arrow_back_ios_new,
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text("Profile Mentor")),
+      body: ListView(),
     );
   }
 }

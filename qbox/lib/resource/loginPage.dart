@@ -14,7 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _Login extends State<LoginPage> {
   LoginBloc bloc = new LoginBloc();
-
+  int role = 0;
   bool _showPass = false;
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
@@ -140,11 +140,12 @@ class _Login extends State<LoginPage> {
   void onSignInClicked() {
     if (bloc.isValidInfor(_userController.text, _passController.text)) {
       Navigator.push(
-          context, MaterialPageRoute(builder: gotoMyBottomNavigationBar));
+          context,
+          MaterialPageRoute(
+              builder: (context) => myBottomNavigationBar(
+                    role: this.role,
+                  )));
+      //context, MaterialPageRoute(builder: (context) => myBottomNavigationBar(role)));
     }
-  }
-
-  Widget gotoMyBottomNavigationBar(BuildContext context) {
-    return myBottomNavigationBar();
   }
 }

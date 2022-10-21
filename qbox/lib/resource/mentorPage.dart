@@ -21,7 +21,7 @@ class _mentorPageState extends State<mentorPage> {
         children: [
           MyAppBar(title: "Mentor Page", icon: Icons.hotel_class_outlined),
           Container(
-            height: 500,
+            height: 430,
             child: CalendarWidget(),
           ),
           FloatingActionButton(
