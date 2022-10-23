@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qbox/resource/homePage.dart';
+import 'package:qbox/resource/listrequestView.dart';
 import 'package:qbox/resource/testingAPIPage.dart';
 import 'package:qbox/resource/viewProfile.dart';
 
@@ -12,12 +13,12 @@ class myBottomNavigationBar extends StatefulWidget {
 
 class _myBottomNavigationBarState extends State<myBottomNavigationBar> {
   int _currentIndex = 0;
-  final List<Widget> _children = [HomePage(), TestingAPI(), ViewProfile()];
+  final List<Widget> _children = [HomePage(), ListRequestView(), ViewProfile()];
 
   @override
   Widget build(BuildContext context) {
     print("đây là role được truyền qua ${widget.role}");
-  
+
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
