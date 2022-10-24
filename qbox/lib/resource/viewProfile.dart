@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qbox/resource/loginPage.dart';
 import 'package:qbox/resource/mentorPage.dart';
+import 'package:qbox/resource/profileMenteePage.dart';
 import 'package:qbox/resource/profileMentorPage.dart';
 import 'package:qbox/resource/widgets/myBottomNavigationBarMentor.dart';
 
@@ -88,7 +89,7 @@ class ViewProfile extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => ProfileMentor()));
+                              builder: (context) => ProfileMentee()));
                     },
                     child: Row(
                       children: [
