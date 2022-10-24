@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qbox/model/todo.dart';
 import 'package:qbox/model/todo_controller.dart';
 import 'package:qbox/model/todo_repository.dart';
+import 'package:qbox/resource/widgets/calendarWidget.dart';
 
 class ListRequestView extends StatelessWidget {
   const ListRequestView({super.key});
@@ -13,7 +14,7 @@ class ListRequestView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('REST API'),
+        title: const Text('Request List'),
       ),
       body: FutureBuilder<List<Todo>>(
         future: todoController.fetchTodoList(),
@@ -57,12 +58,6 @@ class ListRequestView extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            InkWell(
-                                onTap: null,
-                                child: CircleAvatar(
-                                  backgroundImage: AssetImage('images/1.png'),
-                                  minRadius: 30,
-                                )),
                             Padding(
                               padding: const EdgeInsets.all(10),
                               child: Column(
@@ -79,20 +74,20 @@ class ListRequestView extends StatelessWidget {
                             )
                           ],
                         ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Colors.green[400],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            "Begin",
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        // Container(
+                        //   padding: EdgeInsets.all(5),
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.green[400],
+                        //     borderRadius: BorderRadius.circular(20),
+                        //   ),
+                        //   child: Text(
+                        //     "Begin",
+                        //     style: TextStyle(
+                        //         fontSize: 14,
+                        //         color: Colors.white,
+                        //         fontWeight: FontWeight.bold),
+                        //   ),
+                        // ),
                       ],
                     ),
                     Padding(
@@ -118,9 +113,15 @@ class ListRequestView extends StatelessWidget {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        ElevatedButton(onPressed: null, child: Text("Enroll"))
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ElevatedButton(onPressed: () {}, child: Text("Cancel")),
+                        ElevatedButton(
+                            onPressed: () => CalendarWidget(),
+                            child: Text("Detail"))
                       ],
                     )
                   ],
