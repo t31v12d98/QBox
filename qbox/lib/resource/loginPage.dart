@@ -23,10 +23,11 @@ class _Login extends State<LoginPage> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-        constraints: BoxConstraints.expand(),
-        color: Colors.white,
+        body: Container(
+      padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+      constraints: BoxConstraints.expand(),
+      color: Colors.white,
+      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +129,7 @@ class _Login extends State<LoginPage> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   void onToggleShowPass() {
