@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qbox/blocs/login_bloc.dart';
-import 'package:qbox/resource/homePage.dart';
-import 'package:qbox/resource/testingPage.dart';
 import 'package:qbox/resource/widgets/myBottomNavigationBar.dart';
 
 class LoginPage extends StatefulWidget {
@@ -27,7 +25,6 @@ class _Login extends State<LoginPage> {
       padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
       constraints: BoxConstraints.expand(),
       color: Colors.white,
-      child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +125,7 @@ class _Login extends State<LoginPage> {
             ),
           ],
         ),
-      ),
+      
     ));
   }
 

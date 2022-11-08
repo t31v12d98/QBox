@@ -1,14 +1,14 @@
-import 'package:qbox/model/todo.dart';
+import 'package:qbox/model/appointment.dart';
 
 abstract class Repository {
   //get
-  Future<List<Todo>> getTodoList();
+  Future<List<Appointment>> getAppointmentList();
   //patch
-  Future<String> patchComplete(Todo todo);
+  Future<String> patchComplete(Appointment appointment);
   //put
-  Future<String> putComplete(Todo todo);
+  Future<String> putComplete(Appointment appointment);
   //delete
-  Future<String> deleteTodo(Todo todo);
+  Future<String> deleteTodo(Appointment appointment);
   //post
-  Future<String> postTodo(Todo todo);
+  Future<String> postTodo(Appointment appointment);
 }

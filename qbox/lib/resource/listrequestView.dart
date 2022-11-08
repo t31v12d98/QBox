@@ -1,49 +1,41 @@
 import 'package:flutter/material.dart';
-
-import 'package:qbox/model/todo.dart';
-import 'package:qbox/model/todo_controller.dart';
-import 'package:qbox/model/todo_repository.dart';
-import 'package:qbox/resource/widgets/calendarWidget.dart';
+import 'package:qbox/model/appointment.dart';
+import 'package:qbox/model/appointment_controller.dart';
+import 'package:qbox/model/appointment_repository.dart';
 
 class ListRequestView extends StatelessWidget {
   const ListRequestView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var todoController = TodoController(TodoRepository());
+    var appointmentController = AppointmentController(TodoRepository());
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Request List'),
-      ),
-      body: FutureBuilder<List<Todo>>(
-        future: todoController.fetchTodoList(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return const Center(
-              child: Text('error'),
-            );
-          }
-          return buildBodyContent(snapshot, todoController);
-        },
-      ),
-      // floatingActionButton: FloatingActionButton(onPressed: () {
-      //     Todo todo = Todo(
-      //         idSlot: '123', timeEnd: '123', timeStart: '1111', completed: false);
-      //     todoController.postTodo(todo);
-      // }),
-    );
+        appBar: AppBar(
+          title: const Text('My Appointment'),
+        ),
+        body: FutureBuilder<List<Appointment>>(
+          future: appointmentController.fetchTodoList(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return const Center(
+                child: Text('error'),
+              );
+            }
+            return buildBodyContent(snapshot, appointmentController);
+          },
+        ));
   }
 
-  SafeArea buildBodyContent(
-      AsyncSnapshot<List<Todo>> snapshot, TodoController todoController) {
+  SafeArea buildBodyContent(AsyncSnapshot<List<Appointment>> snapshot,
+      AppointmentController appointmentController) {
     return SafeArea(
         child: ListView.separated(
             itemBuilder: (context, index) {
-              var todo = snapshot.data?[index];
+              var appointment = snapshot.data?[index];
               return Container(
                 margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -58,36 +50,42 @@ class ListRequestView extends StatelessWidget {
                       children: [
                         Row(
                           children: [
+                            InkWell(
+                                onTap: null,
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage('images/1.png'),
+                                  minRadius: 30,
+                                )),
                             Padding(
                               padding: const EdgeInsets.all(10),
                               child: Column(
                                 children: [
                                   Text(
-                                    '${todo?.id}',
+                                    "${appointment?.nameMentor}",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Text("Main Major")
+                                  Text("${appointment?.major}")
                                 ],
                               ),
                             )
                           ],
                         ),
-                        // Container(
-                        //   padding: EdgeInsets.all(5),
-                        //   decoration: BoxDecoration(
-                        //     color: Colors.green[400],
-                        //     borderRadius: BorderRadius.circular(20),
-                        //   ),
-                        //   child: Text(
-                        //     "Begin",
-                        //     style: TextStyle(
-                        //         fontSize: 14,
-                        //         color: Colors.white,
-                        //         fontWeight: FontWeight.bold),
-                        //   ),
-                        // ),
+                        Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.green[400],
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            "${appointment?.status}",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ],
                     ),
                     Padding(
@@ -95,8 +93,7 @@ class ListRequestView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Start Time"),
-                          Text("18 : 00 PM"),
+                          Text("BEGIN 18 : 00 PM"),
                           Text("30/09/2022")
                         ],
                       ),
@@ -105,23 +102,13 @@ class ListRequestView extends StatelessWidget {
                       padding: EdgeInsets.only(top: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("End Time  "),
-                          Text("18 : 00 PM"),
-                          Text("30/09/2022")
-                        ],
+                        children: [Text("END 18 : 00 PM"), Text("30/09/2022")],
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        ElevatedButton(onPressed: () {}, child: Text("Cancel")),
-                        ElevatedButton(
-                            onPressed: () => CalendarWidget(),
-                            child: Text("Detail"))
+                        ElevatedButton(onPressed: null, child: Text("Enroll"))
                       ],
                     )
                   ],
