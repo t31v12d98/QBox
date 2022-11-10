@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1069174467278",
+    "firebase_url": "https://auth-development-237b3-default-rtdb.firebaseio.com",
+    "project_id": "auth-development-237b3",
+    "storage_bucket": "auth-development-237b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069174467278:android:e48803d6d0a273533abe9f",
+        "android_client_info": {
+          "package_name": "com.example.qbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069174467278-tpn92n6dpkq2muoped4ijfkpijdvc4sd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVpp7t6XIeA9dxAwvoTW9uIoUCLl7OVvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069174467278-tpn92n6dpkq2muoped4ijfkpijdvc4sd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
