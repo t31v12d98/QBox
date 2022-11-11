@@ -1,7 +1,9 @@
-import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:qbox/resource/homePage.dart';
+import 'package:qbox/resource/loginPage.dart';
+import 'package:qbox/resource/widgets/myBottomNavigationBar.dart';
 
 class UserRepository {
   final FirebaseAuth _firebaseAuth;
@@ -23,11 +25,42 @@ class UserRepository {
         email: email.trim(), password: password);
   }
 
-  Future<List<void>> signOut() async {
-    return Future.wait([_firebaseAuth.signOut(), _googleSignIn.signOut()]);
-  }
-
   Future<bool> isSignedIn() async {
     return await _firebaseAuth.currentUser != null;
+  }
+
+
+  handleAuthState() {
+    return StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.hasData) {
+            return HomePage();
+          } else {
+            return LoginPage();
+          }
+        });
+  }
+
+  signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn(
+        scopes: <String>["email"]).signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  signOut() {
+    FirebaseAuth.instance.signOut();
   }
 }

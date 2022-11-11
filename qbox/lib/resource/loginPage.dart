@@ -20,7 +20,6 @@ class _Login extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     final userRepository = UserRepository();
     // userRepository.createUserWithEmailAndPassword(
     //     't31v12d98@gmail.com', '123456');
@@ -128,6 +127,19 @@ class _Login extends State<LoginPage> {
                   )
                 ]),
           ),
+          Container(
+        width: 200,
+        height: 200,
+        child: Column(
+          children: [
+            GestureDetector(
+                onTap: () {
+                  userRepository.signInWithGoogle();
+                },
+                child: const Image(width: 100, image: AssetImage('images/1.png'))),
+          ],
+        ),
+      ),
         ],
       ),
     ));
