@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:qbox/blocs/login_bloc.dart';
 import 'package:qbox/repository/user_repositoty.dart';
@@ -6,7 +8,6 @@ import 'package:qbox/resource/widgets/myBottomNavigationBar.dart';
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-
     return _Login();
   }
 }
@@ -17,6 +18,9 @@ class _Login extends State<LoginPage> {
   bool _showPass = false;
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
+
+  @override
+  dispose();
 
   @override
   Widget build(BuildContext context) {
@@ -128,18 +132,22 @@ class _Login extends State<LoginPage> {
                 ]),
           ),
           Container(
-        width: 200,
-        height: 200,
-        child: Column(
-          children: [
-            GestureDetector(
-                onTap: () {
-                  userRepository.signInWithGoogle();
-                },
-                child: const Image(width: 100, image: AssetImage('images/1.png'))),
-          ],
-        ),
-      ),
+            width: 200,
+            height: 200,
+            child: Column(
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      userRepository.signInWithGoogle();
+                      Timer(Duration(seconds: 3), () {
+                        nhaytrang();
+                      });                     
+                    },
+                    child: const Image(
+                        width: 100, image: AssetImage('images/1.png'))),
+              ],
+            ),
+          ),
         ],
       ),
     ));
@@ -161,5 +169,14 @@ class _Login extends State<LoginPage> {
                   )));
       //context, MaterialPageRoute(builder: (context) => myBottomNavigationBar(role)));
     }
+  }
+
+  void nhaytrang() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => myBottomNavigationBar(
+                  role: this.role,
+                )));
   }
 }

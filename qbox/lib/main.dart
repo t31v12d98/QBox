@@ -13,15 +13,15 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   @override
-  // Widget build(BuildContext context) => ChangeNotifierProvider(
-  //     create: (context) => EventProvider(),
-  //     child: MaterialApp(home: LoginPage()));
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+      create: (context) => EventProvider(),
+      child: MaterialApp(home: LoginPage()));
 
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: false,
-      home: UserRepository().handleAuthState(),
-    );
-  }
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     themeMode: ThemeMode.system,
+  //     debugShowCheckedModeBanner: false,
+  //     home: UserRepository().handleAuthState(),
+  //   );
+  // }
 }
