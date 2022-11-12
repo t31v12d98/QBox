@@ -139,12 +139,12 @@ class _Login extends State<LoginPage> {
                 GestureDetector(
                     onTap: () {
                       userRepository.signInWithGoogle();
-                      Timer(Duration(seconds: 3), () {
-                        nhaytrang();
-                      });                     
+                      // Timer(Duration(seconds: 3), () {
+                      //   nhaytrang();
+                      // });                     
                     },
                     child: const Image(
-                        width: 100, image: AssetImage('images/1.png'))),
+                        width: 100, image: AssetImage('images/Google_logo.png'))),
               ],
             ),
           ),
@@ -171,12 +171,4 @@ class _Login extends State<LoginPage> {
     }
   }
 
-  void nhaytrang() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => myBottomNavigationBar(
-                  role: this.role,
-                )));
-  }
 }

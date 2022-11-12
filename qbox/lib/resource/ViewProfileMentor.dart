@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:qbox/repository/user_repositoty.dart';
 import 'package:qbox/resource/profileMenteePage.dart';
+import 'package:qbox/resource/widgets/myBottomNavigationBar.dart';
 import 'package:qbox/resource/widgets/myBottomNavigationBarMentor.dart';
 
-class ViewProfile extends StatelessWidget {
+class ViewProfileMentor extends StatelessWidget {
   final ButtonStyle flatButtonStyle = TextButton.styleFrom(
     backgroundColor: Color.fromARGB(221, 243, 243, 243),
     foregroundColor: Color.fromARGB(221, 243, 243, 243),
@@ -36,18 +37,6 @@ class ViewProfile extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // TextButton(
-              //     style: flatButtonStyle3,
-              //     onPressed: () {},
-              //     child: Row(
-              //       children: [
-              //         Icon(
-              //           Icons.arrow_back_ios_new,
-              //           color: Colors.black,
-              //           size: 30.0,
-              //         ),
-              //       ],
-              //     )),
               SizedBox(
                 height: 70,
               ),
@@ -141,7 +130,7 @@ class ViewProfile extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => myBottomNavigationBarMentor(
+                              builder: (context) => myBottomNavigationBar(
                                     role: 1,
                                   )));
                     },
@@ -153,7 +142,7 @@ class ViewProfile extends StatelessWidget {
                           size: 30.0,
                         ),
                         SizedBox(width: 20),
-                        Expanded(child: Text("Mentor Accest")),
+                        Expanded(child: Text("Mentee Accest")),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.black,

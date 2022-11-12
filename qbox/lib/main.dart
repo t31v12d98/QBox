@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
       create: (context) => EventProvider(),
-      child: MaterialApp(home: LoginPage()));
+      child: MaterialApp(home: UserRepository().handleAuthState()));
 
   // Widget build(BuildContext context) {
   //   return MaterialApp(

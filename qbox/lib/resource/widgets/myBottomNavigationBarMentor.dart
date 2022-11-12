@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qbox/resource/homePage.dart';
+import 'package:qbox/resource/ViewProfileMentor.dart';
 import 'package:qbox/resource/mentorPage.dart';
 import 'package:qbox/resource/testingAPIPage.dart';
-import 'package:qbox/resource/viewProfile.dart';
+
 
 class myBottomNavigationBarMentor extends StatefulWidget {
   int role;
@@ -16,7 +16,7 @@ class myBottomNavigationBarMentor extends StatefulWidget {
 class _myBottomNavigationBarMentorState
     extends State<myBottomNavigationBarMentor> {
   int _currentIndex = 0;
-  final List<Widget> _children = [mentorPage(), TestingAPI(), ViewProfile()];
+  final List<Widget> _children = [mentorPage(), TestingAPI(), ViewProfileMentor()];
 
   @override
   Widget build(BuildContext context) {

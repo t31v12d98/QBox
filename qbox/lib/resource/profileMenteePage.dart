@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,6 +14,7 @@ class ProfileMentee extends StatefulWidget {
 class _ProfileMenteeState extends State<ProfileMentee> {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
         appBar: AppBar(title: Text('Your Profile')),
         body: Container(
@@ -40,8 +42,7 @@ class _ProfileMenteeState extends State<ProfileMentee> {
                           shape: BoxShape.circle,
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://cdn.pixabay.com/photo/2018/08/28/13/29/avatar-3637561_1280.png')),
+                              image: NetworkImage(user!.photoURL!)),
                         ),
                       ),
                       Positioned(
@@ -64,16 +65,18 @@ class _ProfileMenteeState extends State<ProfileMentee> {
                   ),
                 ),
                 SizedBox(height: 20),
-                buildTextField('Full Name', 'Trịnh Vũ Đức'),
-                buildTextField('Email', 't31v12d98@gmail.com'),
-                buildTextField('Phone', '0123456789'),
-                buildTextField('Location', 'Hóc Môn, Hồ Chí Minh'),
+                buildTextField('Full Name', user.displayName!),
+                buildTextField('Email', user.email!),
+                buildTextField('Phone', user.phoneNumber!),
+                buildTextField('Location', ''),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       child: Text('CANCEL',
                           style: TextStyle(
                               fontSize: 15,
