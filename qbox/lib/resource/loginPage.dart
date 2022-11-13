@@ -141,10 +141,11 @@ class _Login extends State<LoginPage> {
                       userRepository.signInWithGoogle();
                       // Timer(Duration(seconds: 3), () {
                       //   nhaytrang();
-                      // });                     
+                      // });
                     },
                     child: const Image(
-                        width: 100, image: AssetImage('images/Google_logo.png'))),
+                        width: 100,
+                        image: AssetImage('images/Google_logo.png'))),
               ],
             ),
           ),
@@ -170,5 +171,4 @@ class _Login extends State<LoginPage> {
       //context, MaterialPageRoute(builder: (context) => myBottomNavigationBar(role)));
     }
   }
-
 }
