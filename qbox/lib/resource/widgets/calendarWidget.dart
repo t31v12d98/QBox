@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -17,10 +18,10 @@ class CalendarWidget extends StatefulWidget {
 }
 
 class _CalendarWidgetState extends State<CalendarWidget> {
+  
   @override
   Widget build(BuildContext context) {
     final events = Provider.of<EventProvider>(context).events;
-
     return SfCalendar(
       view: CalendarView.month,
       dataSource: EventDataSource(events),

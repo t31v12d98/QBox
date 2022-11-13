@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -208,11 +210,12 @@ class _EventEditingPageState extends State<EventEditingPage> {
 
   Future saveForm() async {
     final isValid = _formKey.currentState!.validate();
-
+    final user = FirebaseAuth.instance.currentUser;
     if (isValid) {
       final event = Event(
           title: titleController.text,
           description: 'description',
+          mentorName: "name",
           form: formDate,
           to: toDate);
       final isEditing = widget.event != null;
@@ -222,8 +225,32 @@ class _EventEditingPageState extends State<EventEditingPage> {
         Navigator.of(context).pop();
       } else {
         provider.addEvent(event);
+        createAppointment(
+            form: formDate.toString(),
+            to: toDate.toString(),
+            title: titleController.text,
+            status: 'false',
+            nameMentor: user?.displayName!);
       }
       Navigator.of(context).pop();
     }
+  }
+
+  Future createAppointment(
+      {required String form,
+      required String to,
+      required String title,
+      String? major,
+      String? nameMentor,
+      required String status}) async {
+    final docUser = FirebaseFirestore.instance.collection('apointments').doc();
+    final json = {
+      'beginTime': form,
+      'endTime': to,
+      'major': title,
+      'nameMentor': nameMentor,
+      'status': status
+    };
+    docUser.set(json);
   }
 }
