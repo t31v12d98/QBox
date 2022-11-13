@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class Event {
@@ -20,10 +21,12 @@ class Event {
   String toString() =>
       'title: $title ; descrip: $description ; form: $form ; to: $to';
 
-  static Event formJson(Map<String, dynamic> json) => Event(
-      title: json['major'],
-      description: '',
-      form: json['beginTime'],
-      to: json['endTime'],
-      mentorName: json['nameMentor']);
+  static Event formJson(Map<String, dynamic> json) {
+    return Event(
+        title: json['major'],
+        description: '',
+        form: DateTime.parse(json['beginTime']),
+        to: DateTime.parse(json['endTime']),
+        mentorName: json['nameMentor']);
+  }
 }

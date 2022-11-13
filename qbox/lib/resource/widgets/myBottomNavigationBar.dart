@@ -13,7 +13,11 @@ class myBottomNavigationBar extends StatefulWidget {
 
 class _myBottomNavigationBarState extends State<myBottomNavigationBar> {
   int _currentIndex = 0;
-  final List<Widget> _children = [HomePage(), ListRequestView(), ViewProfile()];
+  final List<Widget> _children = [
+    ViewProfile(),
+    ListRequestView(),
+    ViewProfile()
+  ];
 
   @override
   Widget build(BuildContext context) {

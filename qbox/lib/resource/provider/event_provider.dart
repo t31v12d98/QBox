@@ -5,21 +5,26 @@ import 'package:qbox/model/event.dart';
 class EventProvider extends ChangeNotifier {
   final List<Event> _events = [];
 
-  Stream<List<Event>> readAppointment() => FirebaseFirestore.instance
-      .collection('apointments')
-      .snapshots()
-      .map((snapshot) =>
-          snapshot.docs.map((doc) => Event.formJson(doc.data())).toList());
 
-  void getList() {
-    readAppointment().listen((listOfStrings) {
-      for (Event myEvent in listOfStrings) {
-        _events.add(myEvent);
-      }
-    });
-  }
+
+
+  // Stream<List<Event>> readAppointment() => FirebaseFirestore.instance
+  //     .collection('apointments')
+  //     .snapshots()
+  //     .map((snapshot) =>
+  //         snapshot.docs.map((doc) => Event.formJson(doc.data())).toList());
+
+  // void getList() {
+  //   readAppointment().listen((listOfEvent) {
+  //     for (Event myEvent in listOfEvent) {
+  //       _events.add(myEvent);
+  //     }
+  //     print('đây là list event: $_events.toString()');
+  //   });
+  // }
 
   List<Event> get events {
+
     return _events;
   }
 
