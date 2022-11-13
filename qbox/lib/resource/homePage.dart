@@ -20,7 +20,7 @@ class _Home extends State<HomePage> {
       body: ListView(children: [
         MyAppBar(title: "home page", icon: Icons.hotel_class_outlined),
         Container(
-            height: 680,
+            height: 500,
             padding: EdgeInsets.only(top: 15),
             decoration: BoxDecoration(
                 color: Color(0xFFEDECF2),

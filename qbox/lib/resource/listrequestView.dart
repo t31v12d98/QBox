@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:qbox/model/appointment.dart';
 import 'package:qbox/model/appointment_controller.dart';
@@ -14,8 +17,8 @@ class ListRequestView extends StatelessWidget {
         appBar: AppBar(
           title: const Text('My Appointment'),
         ),
-        body: FutureBuilder<List<Appointment>>(
-          future: appointmentController.fetchTodoList(),
+        body: StreamBuilder<List<Slots>>(
+          stream: readSlots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -25,103 +28,96 @@ class ListRequestView extends StatelessWidget {
                 child: Text('error'),
               );
             }
-            return buildBodyContent(snapshot, appointmentController);
-          },
-        ));
-  }
-
-  SafeArea buildBodyContent(AsyncSnapshot<List<Appointment>> snapshot,
-      AppointmentController appointmentController) {
-    return SafeArea(
-        child: ListView.separated(
-            itemBuilder: (context, index) {
-              var appointment = snapshot.data?[index];
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            InkWell(
-                                onTap: null,
-                                child: CircleAvatar(
-                                  backgroundImage: AssetImage('images/1.png'),
-                                  minRadius: 30,
-                                )),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
+            if (snapshot.hasData) {
+              final slots = snapshot.data!;
+              return ListView.builder(
+                  itemCount: slots.length,
+                  itemBuilder: (context, index) {
+                    final users = slots[index];
+                    List<String> timebg = users.beginTime.split('.');
+                    List<String> timebg2 = timebg.elementAt(0).split(':');
+                    String timebg3 =
+                        timebg2.elementAt(0) + ':' + timebg2.elementAt(1);
+                    List<String> timeed = users.endTime.split('.');
+                    List<String> timeed2 = timebg.elementAt(0).split(':');
+                    String timeed3 =
+                        timebg2.elementAt(0) + ':' + timebg2.elementAt(1);
+                    int avatar = Random().nextInt(5) + 5;
+                    return Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
                                 children: [
-                                  Text(
-                                    "${appointment?.nameMentor}",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text("${appointment?.major}")
+                                  InkWell(
+                                      onTap: null,
+                                      child: CircleAvatar(
+                                        backgroundImage:
+                                            AssetImage('images/${avatar}.jpg'),
+                                        minRadius: 30,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "${users.nameMentor}",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text("Major: ${users.major}")
+                                      ],
+                                    ),
+                                  )
                                 ],
                               ),
-                            )
-                          ],
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            color: Colors.green[400],
-                            borderRadius: BorderRadius.circular(20),
+                            ],
                           ),
-                          child: Text(
-                            "${appointment?.status}",
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Begin Time:"),
+                                Text("${timebg3}")
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("BEGIN 18 : 00 PM"),
-                          Text("30/09/2022")
+                          Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [Text("End Time:"), Text("${timeed3}")],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                  onPressed: null, child: Text("Enroll"))
+                            ],
+                          )
                         ],
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text("END 18 : 00 PM"), Text("30/09/2022")],
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(onPressed: null, child: Text("Enroll"))
-                      ],
-                    )
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const Divider(
-                thickness: 0.5,
-                height: 0.5,
-              );
-            },
-            itemCount: snapshot.data?.length ?? 0));
+                    );
+                  });
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+            ;
+          },
+        ));
   }
 
   Container buildCallContainer(String title, Color color) {
@@ -133,4 +129,45 @@ class ListRequestView extends StatelessWidget {
       child: Center(child: Text(title)),
     );
   }
+
+  Stream<List<Slots>> readSlots() => FirebaseFirestore.instance
+      .collection('apointments')
+      .snapshots()
+      .map((snapshot) =>
+          snapshot.docs.map((doc) => Slots.fromJson(doc.data())).toList());
+}
+
+class Slots {
+  // String id;
+  final String beginTime;
+  final String endTime;
+  final String major;
+  final String nameMentor;
+  final String status;
+
+  Slots(
+      {
+      // this.id = '',
+      required this.beginTime,
+      required this.endTime,
+      required this.major,
+      required this.nameMentor,
+      required this.status});
+
+  Map<String, dynamic> toJson() => {
+        // 'id': id,
+        'beginTime': beginTime,
+        'endTime': endTime,
+        'major': major,
+        'nameMentor': nameMentor,
+        'status': status,
+      };
+
+  static Slots fromJson(Map<String, dynamic> json) => Slots(
+      // id: json['id'],
+      beginTime: json['beginTime'],
+      endTime: json['endTime'],
+      major: json['major'],
+      nameMentor: json['nameMentor'],
+      status: json['status']);
 }
