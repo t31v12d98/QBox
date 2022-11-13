@@ -222,6 +222,8 @@ class _EventEditingPageState extends State<EventEditingPage> {
       final provider = Provider.of<EventProvider>(context, listen: false);
       if (isEditing) {
         provider.editEvent(event, widget.event!);
+        final docUser =
+            FirebaseFirestore.instance.collection('apointments').doc();
         Navigator.of(context).pop();
       } else {
         provider.addEvent(event);

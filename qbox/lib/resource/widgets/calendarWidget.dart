@@ -22,27 +22,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   @override
   Widget build(BuildContext context) {
     List<Event> events = Provider.of<EventProvider>(context).events;
-      CollectionReference _collectionRef =
-        FirebaseFirestore.instance.collection('apointments');
-
-    // Future<List<Object?>> getData() async {
-      // Get docs from collection reference
-      // QuerySnapshot querySnapshot = await _collectionRef.get();
-      // Get data from docs and convert map to List
-      // return querySnapshot.docs.map((doc) => doc.data()).toList();
-    // }
-
-    // return SfCalendar(
-    //   view: CalendarView.month,
-    //   dataSource: EventDataSource(events),
-    //   initialSelectedDate: DateTime.now(),
-    //   onLongPress: (detail) {
-    //     final provider = Provider.of<EventProvider>(context, listen: false);
-    //     provider.setDate(detail.date!);
-    //     showModalBottomSheet(
-    //         context: context, builder: (context) => TaskWidget());
-    //   },
-    // );
 
     return Scaffold(
       body: StreamBuilder<List<Event>>(
